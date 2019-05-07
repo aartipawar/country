@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Locations</title>
+   </head>
+   <body class="home">
+   
+      <div class="display-table">
+         <div class="row display-table-row minheightfix">
+           {% include "base/left-bar.html" %}
+            <div class="col-md-10 col-sm-10 col-xs-10 display-table-cell v-align col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+               <div class="row">
+                 {% include "base/header.html" %}
+               </div>
+               <div class="user-dashboard">
+                  <div class="row pharmacy_bg">
+                     <div class="col-md-12 col-sm-12 col-xs-12 gutter innercontainer" style="margin-top: -700px;">
+                        
+                           <div class="">
+                              <div class="form-group">
+                                {% block content %}
+                                {% endblock %}
+                              </div>
+                              
+                           </div>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <section class="footer">
+         Copyright @ Location Management
+      </section>
+   </body>
+</html>

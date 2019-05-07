@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="container">
+  <form id="state-form" action="/locations" method="get" role="form" style="display: block;">{% csrf_token %}
+   <div class="col-md-8" >
+    <div class="">
+        <label  for="sel1">Country List</label>
+        <select class="form-control select_contry" id="sel1">
+            <option >select</option>
+            {% for list in countries %} 
+                <option id="{{list.id}}" value="{{list.id}}">{{list}}</option>   
+            {% endfor %}
+        </select><br><br>
+        <label  for="sel1">State List</label>
+        <select class="form-control selected_state">
+            <option value="">
+                
+            </option >
+        </select><br><br>
+        <label  for="sel1">City List</label>
+        <select class="form-control selected_city">
+            <option value="">
+                
+            </option ><br><br>
+        </select>
+</div>   
+  </form>
+</div>
+
+
+ <script type="text/javascript">
+        $(document).on('click', '.select_contry', function() {
+        var country_id = $(this).find('option:selected').attr('id');
+        $.ajax({
+            type: "POST",
+            url: "/get/state",
+            dataType: "json",
+            data: {"country_id":country_id},
+            success: function(res) {
+                if (res.success == 'true'){
+                    var sdata = res.state;
+                    $('.selected_state').empty();
+                    $('.selected_city').empty();
+                    for (var i = 0; i < sdata.length; i++) {
+                        
+                        $('.selected_state').append($("<option></option>").attr("value",sdata[i].id).text(sdata[i].state)); 
+                    }
+                    
+                }
+                else
+                {
+                    alert(res.error);    
+                }
+            }
+        });
+        
+    });
+    
+    </script>
+
+    <script type="text/javascript">
+        $(document).on('click', '.selected_state', function() {
+        var state_id = $(this).find('option:selected').val();
+        $.ajax({
+            type: "POST",
+            url: "/get/city",
+            dataType: "json",
+            data: {"state_id":state_id},
+            success: function(res) {
+                if (res.success == 'true'){
+                    var cdata = res.city
+                    $('.selected_city').empty();
+                    for (var i = 0; i < cdata.length; i++) {
+                        $('.selected_city').append($("<option></option>").attr("value",cdata[i].id).text(cdata[i].city)); 
+                    }
+            }
+            else{
+                    alert(res.error);
+                    
+                }
+
+        }
+        });
+      
+    });
+    
+    $('.selected_state')[0].options.length = 0;
+    $('.selected_city')[0].options.length = 0;
+    </script>
+
+{% endblock %}
+
