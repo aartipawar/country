@@ -37,11 +37,12 @@ def get_city(request):
         
 
 
-# class CityList(View):
-#     def get(self,request):
-#         if request.user.is_authenticated:
-#             city_obj = CityForm()
-#             return render(request, 'city.html', {'city_list': city_obj})
+class CityList(View):
+    def get(self,request):
+        if request.user.is_authenticated:
+            city_obj = CityForm()
+            print('lll')
+            return render(request, 'city.html', {'city_list': city_obj})
 
 
 # class StateList(View):
